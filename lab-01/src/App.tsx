@@ -43,7 +43,7 @@ function App() {
         },
     ];
 
-    const [currentSelection, setCurrentSelection] = useState<Event>();
+    const [currentSelection, setCurrentSelection] = useState<Event | null>(null);
 
     const handleSelectEvent = (event: Event) => {
         setCurrentSelection(event);
