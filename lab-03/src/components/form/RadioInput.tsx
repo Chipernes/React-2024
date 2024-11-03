@@ -1,15 +1,15 @@
-import {FC, useState, ChangeEvent} from "react";
+import {ChangeEvent, FC, FocusEvent} from "react";
 import TextInput from "./TextInput.tsx";
 
 type RadioInputProps = {
-    options: string[],
+    options?: string[],
     otherAnswer?: boolean,
     required?: boolean
-    handleBlur?: () => void;
-    handleInputChange?: () => void;
+    handleBlur?: (event: FocusEvent<HTMLInputElement>) => void;
+    handleInputChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 };
 
-const RadioInput: FC<RadioInputProps> = ({required, options, otherAnswer, handleBlur, handleInputChange}) => {
+const RadioInput: FC<RadioInputProps> = ({required, options = [], otherAnswer, handleBlur, handleInputChange}) => {
     return (
         <div className="accent-red-500 mt-5">
             {options.map((option, index) => (
@@ -37,7 +37,7 @@ const RadioInput: FC<RadioInputProps> = ({required, options, otherAnswer, handle
                         <span className="ml-3">Other: </span>
                     </label>
 
-                    <TextInput handleBlur={handleBlur} handleInputChange={handleInputChange} required />
+                    <TextInput handleBlur={() => handleBlur} handleInputChange={() => handleInputChange} required />
 
                 </div>
             )}

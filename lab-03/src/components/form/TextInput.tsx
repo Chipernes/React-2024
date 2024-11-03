@@ -1,10 +1,10 @@
-import {FC} from "react";
+import {ChangeEvent, FC, FocusEvent} from "react";
 import classNames from "classnames";
 
 type TextInputProps = {
     required?: boolean,
-    handleBlur: () => void,
-    handleInputChange: () => void,
+    handleBlur: (event: FocusEvent<HTMLInputElement>) => void,
+    handleInputChange: (event: ChangeEvent<HTMLInputElement>) => void,
 };
 
 const TextInput: FC<TextInputProps> = ({required, handleBlur, handleInputChange}) => {

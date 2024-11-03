@@ -38,11 +38,11 @@ const Question: FC<FormQuestionProps> = ({question, inputType , required, option
             </p>
             {inputType === 'text' && (
                 <div className="mt-6">
-                    <TextInput handleBlur={handleBlur} handleInputChange={handleInputChange} required/>
+                    <TextInput handleBlur={(e) => handleBlur(e)} handleInputChange={(e) => handleInputChange(e)} required/>
                 </div>
             )}
 
-            {inputType === 'radio' && <RadioInput options={options} otherAnswer required handleBlur={handleBlur} handleInputChange={handleInputChange}/>}
+            {inputType === 'radio' && <RadioInput options={options} otherAnswer required handleBlur={(e) => handleBlur(e)} handleInputChange={(e) => handleInputChange(e)}/>}
 
             {hasError &&  <p className="text-red-500 mt-3">The answer to this question is required</p>}
         </div>
