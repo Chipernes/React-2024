@@ -14,21 +14,21 @@ const RadioMatrix: FC<RadioMatrixProps> = ({ control, matrixData, name }) => {
     const { columns, rows } = matrixData!;
 
     return (
-        <table className="border-collapse border border-gray-300">
+        <table>
             <thead>
             <tr>
-                <th className="border border-gray-300 p-2"></th>
+                <th className="p-2"></th>
                 {columns.map((column) => (
-                    <th key={column} className="border border-gray-300 p-2">{column}</th>
+                    <th key={column} className="p-2">{column}</th>
                 ))}
             </tr>
             </thead>
             <tbody>
             {rows.map((row) => (
-                <tr key={row}>
-                    <td className="border border-gray-300 p-2">{row}</td>
+                <tr key={row} className="bg-amber-950">
+                    <td className="bg-gray-50 p-2">{row}</td>
                     {columns.map((column) => (
-                        <td key={`${row}-${column}`} className="border border-gray-300 p-2 text-center">
+                        <td key={`${row}-${column}`} className="bg-gray-50 p-2 text-center">
                             <Controller
                                 name={`${name}.${row}`}
                                 control={control}

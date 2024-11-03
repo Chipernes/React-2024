@@ -6,23 +6,20 @@ type Inputs = {
     team: string;
     favoriteTech: string;
     learnTech: string[];
-    currentLevel: string[];
+    currentLevel: Record<string, string>;
 };
 
 const Form = () => {
-    const { getValues, control, handleSubmit } = useForm<Inputs>({
+    const { control, handleSubmit, formState: { errors }} = useForm<Inputs>({
         defaultValues: {
             name: '',
             team: '',
             favoriteTech: '',
             learnTech: [],
+            currentLevel: {},
         },
     });
-    const onSubmit: SubmitHandler<Inputs> = data => {
-        const values = getValues();
-        console.log(values)
-        console.log(data)
-    };
+    const onSubmit: SubmitHandler<Inputs> = data => console.log(data);
 
     return (
         <form
@@ -44,13 +41,16 @@ const Form = () => {
                 inputType="text"
                 required
                 name="name"
+                errors={errors.name}
             />
+
             <Question
                 control={control}
                 question="Your team"
                 inputType="text"
                 required
                 name="team"
+                errors={errors.team}
             />
             <Question
                 control={control}
@@ -59,6 +59,7 @@ const Form = () => {
                 name="favoriteTech"
                 required
                 options={["Vue", "React", "Angular", "NodeJS", "SAP Fiori"]}
+                errors={errors.favoriteTech}
             />
             <Question
                 control={control}
@@ -67,6 +68,7 @@ const Form = () => {
                 required
                 name="learnTech"
                 options={["JS", "TS", "React", "Vue", "Angular", "NodeJS", "SAP Fiori", "React Native", "Flutter"]}
+                errors={errors.learnTech}
             />
             <Question
                 control={control}
@@ -78,6 +80,7 @@ const Form = () => {
                     columns: ["Not relevant", "Trainee", "Junior", "Middle", "Senior", "Expert"],
                     rows: ["JS", "TS", "React", "Vue", "Angular", "NodeJS", "GraphQL", "Wordpress, Drupal", "Python", "REST", "Other", "React Native", "Flutter"],
                 }}
+                errors={errors.currentLevel}
             />
 
             <input type="submit" />

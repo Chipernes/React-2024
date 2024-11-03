@@ -16,9 +16,10 @@ type FormQuestionProps = {
         columns: string[],
         rows: string[],
     },
+    errors: any;
 };
 
-const Question: FC<FormQuestionProps> = ({ name, required, control, question, inputType, options, matrixData}) => {
+const Question: FC<FormQuestionProps> = ({ errors, name, required, control, question, inputType, options, matrixData}) => {
     const [hasError, setHasError] = useState(false);
 
     const questionClasses = classNames(
@@ -44,7 +45,7 @@ const Question: FC<FormQuestionProps> = ({ name, required, control, question, in
         <div className={questionClasses}>
             <p>
                 {question}
-                {<span className="text-red-500"> *</span>}
+                {required && <span className="text-red-500"> *</span>}
             </p>
             {inputType === 'text' && (
                 <div className="mt-6">
@@ -58,7 +59,7 @@ const Question: FC<FormQuestionProps> = ({ name, required, control, question, in
 
             {inputType === 'radioMatrix' && <RadioMatrix name={name} control={control} matrixData={matrixData}/>}
 
-            {hasError &&  <p className="text-red-500 mt-3">The answer to this question is required</p>}
+            {(hasError || errors) && <p className="text-red-500 mt-3">The answer to this question is required</p>}
         </div>
     );
 };
