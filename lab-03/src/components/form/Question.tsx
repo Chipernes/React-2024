@@ -1,19 +1,17 @@
-import {FC, useState, FocusEvent, ChangeEvent} from "react";
+import {ChangeEvent, FC, FocusEvent, useState} from "react";
 import classNames from "classnames";
+import RadioInput from "./RadioInput.tsx";
+import TextInput from "./TextInput.tsx";
 
-interface FormQuestionProps {
-    question: string;
-    inputType: string;
-    required?: boolean;
-}
+type FormQuestionProps = {
+    question: string,
+    inputType: 'text' | 'radio' | 'checkbox',
+    required?: boolean,
+    options?: string[]
+};
 
-const Question: FC<FormQuestionProps> = ({question, required}) => {
+const Question: FC<FormQuestionProps> = ({question, inputType , required, options}) => {
     const [hasError, setHasError] = useState(false);
-
-    const inputClasses = classNames(
-        "mt-6 border-b-2 p-2 w-80 focus:outline-none",
-        { "focus:border-red-500": required }
-    );
 
     const questionClasses = classNames(
         "bg-white rounded-lg px-5 py-8 mt-5",
@@ -38,14 +36,14 @@ const Question: FC<FormQuestionProps> = ({question, required}) => {
                 {question}
                 {required && <span className="text-red-500"> *</span>}
             </p>
+            {inputType === 'text' && (
+                <div className="mt-6">
+                    <TextInput handleBlur={handleBlur} handleInputChange={handleInputChange} required/>
+                </div>
+            )}
 
-            <input
-                type="text"
-                placeholder="Your answer"
-                className={inputClasses}
-                onBlur={handleBlur}
-                onChange={handleInputChange}
-            />
+            {inputType === 'radio' && <RadioInput options={options} otherAnswer required handleBlur={handleBlur} handleInputChange={handleInputChange}/>}
+
             {hasError &&  <p className="text-red-500 mt-3">The answer to this question is required</p>}
         </div>
     );

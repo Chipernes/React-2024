@@ -15,14 +15,20 @@ const Form = () => {
             </div>
 
             <Question
-                question={"Name, Surname"}
+                question="Name, Surname"
                 inputType="text"
                 required
             />
             <Question
-                question={"Your team"}
+                question="Your team"
                 inputType="text"
                 required
+            />
+            <Question
+                question="My favorite tech (best)"
+                inputType="radio"
+                required
+                options={["Vue", "React", "Angular", "NodeJS", "SAP Fiori"]}
             />
         </form>
     );
