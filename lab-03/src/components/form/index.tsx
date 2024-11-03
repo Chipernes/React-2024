@@ -7,6 +7,15 @@ type Inputs = {
     favoriteTech: string;
     learnTech: string[];
     currentLevel: Record<string, string>;
+    interest: string[];
+    goals1: string,
+    goals2: string,
+    goals3: string,
+    wantToWork: string,
+    wantToSpeak: string,
+    myTopic: string[],
+    wantToVisit: string,
+    myIdea: string
 };
 
 const Form = () => {
@@ -17,6 +26,15 @@ const Form = () => {
             favoriteTech: '',
             learnTech: [],
             currentLevel: {},
+            interest: [],
+            goals1: '',
+            goals2: '',
+            goals3: '',
+            wantToWork: '',
+            wantToSpeak: '',
+            myTopic: [],
+            wantToVisit: '',
+            myIdea: ''
         },
     });
     const onSubmit: SubmitHandler<Inputs> = data => console.log(data);
@@ -43,7 +61,6 @@ const Form = () => {
                 name="name"
                 errors={errors.name}
             />
-
             <Question
                 control={control}
                 question="Your team"
@@ -82,8 +99,95 @@ const Form = () => {
                 }}
                 errors={errors.currentLevel}
             />
+            <Question
+                control={control}
+                question="I'm interested to"
+                inputType="checkbox"
+                required
+                name="interest"
+                options={["develop presentations", "develop DX8", "develop complex app", "develop hybrid react-native", "develop internal small project", "develop pet-projects", "research for frontend competence center"]}
+                errors={errors.interest}
+            />
+            <Question
+                control={control}
+                question="#1 My goals on next time"
+                additionalText="Let's prepare 3 goals for your and delivery future growth. You can check those goals in next 3 month. Example: want to create prject with react, redux, saga, rest in next 3month. Project should contain 10+ complex components, routing..."
+                inputType="text"
+                required
+                name="goals1"
+                errors={errors.goals1}
+            />
+            <Question
+                control={control}
+                question="#2 My goals on next time"
+                inputType="text"
+                required
+                name="goals2"
+                errors={errors.goals2}
+            />
+            <Question
+                control={control}
+                question="#3 My goals on next time"
+                inputType="text"
+                required
+                name="goals3"
+                errors={errors.goals3}
+            />
+            <Question
+                control={control}
+                question="I want to work on new PreSales. MVP, POC or new projects"
+                additionalText="For future planning we want to know if it is interested for you"
+                inputType="radio"
+                name="wantToWork"
+                required
+                options={["yes", "no"]}
+                errors={errors.wantToWork}
+            />
+            <Question
+                control={control}
+                question="I want to speak on FCC meetup or other meetups"
+                additionalText="We want to check if we should come back internal FCC team meetups."
+                inputType="radio"
+                name="wantToSpeak"
+                required
+                options={["Yes", "No"]}
+                errors={errors.wantToSpeak}
+            />
+            <Question
+                control={control}
+                question="My topic in FCC"
+                additionalText="We want to check if we should come back internal FCC team meetups."
+                inputType="checkbox"
+                required
+                name="myTopic"
+                options={["Global technology overview", "Analytic and architecture topics", "Technology battle", "Anthill edetailer (internal stuff)", "Anthill DX8 (internal stuff)", "Pet projects discussions and showing"]}
+                errors={errors.myTopic}
+            />
+            <Question
+                control={control}
+                question="I want to visit FCC meetup"
+                inputType="radio"
+                name="wantToVisit"
+                required
+                options={["Yes", "No"]}
+                errors={errors.wantToVisit}
+            />
+            <Question
+                control={control}
+                question="My idea of how to improve our work"
+                additionalText="You can propose everything that you want. Doesn't matter your delivery / team"
+                inputType="text"
+                name="myIdea"
+            />
 
-            <input type="submit" />
+            <div className="flex justify-between items-center mt-5">
+                <button type="submit" className="bg-orange-600 text-white px-8 py-2 rounded">Submit</button>
+                <div className="flex items-center gap-4">
+                    <div className="w-44 h-2 bg-green-600 rounded"/>
+                    <p>Page 1 of 1</p>
+                </div>
+                <button type="reset" className="text-orange-600 font-medium">Reset</button>
+            </div>
         </form>
     );
 };

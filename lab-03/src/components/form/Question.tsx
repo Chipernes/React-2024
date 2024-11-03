@@ -7,6 +7,7 @@ import RadioMatrix from "./RadioMatrix.tsx";
 
 type FormQuestionProps = {
     question: string,
+    additionalText?: string,
     inputType: 'text' | 'radio' | 'checkbox' | 'radioMatrix',
     options?: string[],
     required?: boolean
@@ -16,10 +17,10 @@ type FormQuestionProps = {
         columns: string[],
         rows: string[],
     },
-    errors: any;
+    errors?: any;
 };
 
-const Question: FC<FormQuestionProps> = ({ errors, name, required, control, question, inputType, options, matrixData}) => {
+const Question: FC<FormQuestionProps> = ({ errors, name, required, control, question, additionalText, inputType, options, matrixData}) => {
     const [hasError, setHasError] = useState(false);
 
     const questionClasses = classNames(
@@ -47,6 +48,9 @@ const Question: FC<FormQuestionProps> = ({ errors, name, required, control, ques
                 {question}
                 {required && <span className="text-red-500"> *</span>}
             </p>
+
+            {additionalText && <p>{additionalText}</p>}
+
             {inputType === 'text' && (
                 <div className="mt-6">
                     <TextInput name={name} control={control} handleBlur={handleBlur} handleInputChange={handleInputChange} required={required}/>
