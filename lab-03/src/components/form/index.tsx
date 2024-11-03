@@ -1,8 +1,31 @@
 import Question from "./Question.tsx";
+import { useForm, SubmitHandler } from "react-hook-form";
+
+type Inputs = {
+    name: string;
+    team: string;
+    favoriteTech: string;
+    learnTech: string[];
+};
 
 const Form = () => {
+    const { getValues, control, handleSubmit } = useForm<Inputs>({
+        defaultValues: {
+            name: '',
+            team: '',
+            favoriteTech: '',
+            learnTech: [],
+        },
+    });
+    const onSubmit: SubmitHandler<Inputs> = data => {
+        const values = getValues();
+        console.log(values)
+        console.log(data)
+    };
+
     return (
         <form
+            onSubmit={handleSubmit(onSubmit)}
             noValidate
             className="max-w-[650px] m-auto py-5"
         >
@@ -15,21 +38,37 @@ const Form = () => {
             </div>
 
             <Question
+                control={control}
                 question="Name, Surname"
                 inputType="text"
                 required
+                name="name"
             />
             <Question
+                control={control}
                 question="Your team"
                 inputType="text"
                 required
+                name="team"
             />
             <Question
+                control={control}
                 question="My favorite tech (best)"
                 inputType="radio"
+                name="favoriteTech"
                 required
                 options={["Vue", "React", "Angular", "NodeJS", "SAP Fiori"]}
             />
+            <Question
+                control={control}
+                question="I want to learn tech (JS)"
+                inputType="checkbox"
+                required
+                name="learnTech"
+                options={["JS", "TS", "React", "Vue", "Angular", "NodeJS", "SAP Fiori", "React Native", "Flutter"]}
+            />
+
+            <input type="submit" />
         </form>
     );
 };

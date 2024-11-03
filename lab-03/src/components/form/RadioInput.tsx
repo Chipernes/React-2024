@@ -1,47 +1,63 @@
-import {ChangeEvent, FC, FocusEvent} from "react";
-import TextInput from "./TextInput.tsx";
+import { FC } from "react";
+import {Controller} from "react-hook-form";
 
 type RadioInputProps = {
     options?: string[],
-    otherAnswer?: boolean,
+    hasOtherAnswer?: boolean,
     required?: boolean
-    handleBlur?: (event: FocusEvent<HTMLInputElement>) => void;
-    handleInputChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+    control: any,
+    name: string,
 };
 
-const RadioInput: FC<RadioInputProps> = ({required, options = [], otherAnswer, handleBlur, handleInputChange}) => {
+const RadioInput: FC<RadioInputProps> = ({ control, name, required, options = [], hasOtherAnswer}) => {
     return (
-        <div className="accent-red-500 mt-5">
-            {options.map((option, index) => (
-                <div key={index} className="mt-2">
+        <>
+            <div className="accent-red-500 mt-5">
+                {options.map((option, index) => (
+                    <div key={index} className="mt-2">
+                        <label className="flex items-center">
+                            <Controller
+                                control={control}
+                                name={name}
+                                rules={required ? { required } : undefined}
+                                render={({ field }) => (
+                                    <input
+                                        type="radio"
+                                        required={required}
+                                        className="w-5 h-5"
+                                        {...field}
+                                        value={option}
+                                    />
+                                )}
+                            />
+                            <span className="ml-3">{option}</span>
+                        </label>
+                    </div>
+                ))}
+
+                {hasOtherAnswer && (
                     <label className="flex items-center">
-                        <input
-                            type="radio"
-                            required={required}
-                            name="radio"
-                            className="w-5 h-5"
+                        <Controller
+                            control={control}
+                            name={name}
+                            rules={required ? { required } : undefined}
+                            render={({ field }) => (
+                                <input
+                                    type="radio"
+                                    required={required}
+                                    className="w-5 h-5"
+                                    {...field}
+                                    value="Other"
+                                />
+                            )}
                         />
-                        <span className="ml-3">{option}</span>
+                        <span className="ml-3">Other:
+                            <input className="ml-5 border-b-2 w-80 focus:outline-none" type="text"/>
+                        </span>
                     </label>
-                </div>
-            ))}
-            {otherAnswer && (
-                <div className="mt-2 flex items-center">
-                    <label className="flex items-center mr-5">
-                        <input
-                            type="radio"
-                            required={required}
-                            name="radio"
-                            className="w-5 h-5"
-                        />
-                        <span className="ml-3">Other: </span>
-                    </label>
-
-                    <TextInput handleBlur={() => handleBlur} handleInputChange={() => handleInputChange} required />
-
-                </div>
-            )}
-        </div>
+                )}
+            </div>
+        </>
     );
 };
 
