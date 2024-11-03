@@ -6,6 +6,7 @@ type Inputs = {
     team: string;
     favoriteTech: string;
     learnTech: string[];
+    currentLevel: string[];
 };
 
 const Form = () => {
@@ -66,6 +67,17 @@ const Form = () => {
                 required
                 name="learnTech"
                 options={["JS", "TS", "React", "Vue", "Angular", "NodeJS", "SAP Fiori", "React Native", "Flutter"]}
+            />
+            <Question
+                control={control}
+                question="My current level on tech"
+                inputType="radioMatrix"
+                required
+                name="currentLevel"
+                matrixData={{
+                    columns: ["Not relevant", "Trainee", "Junior", "Middle", "Senior", "Expert"],
+                    rows: ["JS", "TS", "React", "Vue", "Angular", "NodeJS", "GraphQL", "Wordpress, Drupal", "Python", "REST", "Other", "React Native", "Flutter"],
+                }}
             />
 
             <input type="submit" />

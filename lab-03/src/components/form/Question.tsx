@@ -3,17 +3,22 @@ import classNames from "classnames";
 import RadioInput from "./RadioInput.tsx";
 import TextInput from "./TextInput.tsx";
 import CheckboxInput from "./CheckboxInput.tsx";
+import RadioMatrix from "./RadioMatrix.tsx";
 
 type FormQuestionProps = {
     question: string,
-    inputType: 'text' | 'radio' | 'checkbox',
+    inputType: 'text' | 'radio' | 'checkbox' | 'radioMatrix',
     options?: string[],
     required?: boolean
     control: any,
-    name: string
+    name: string,
+    matrixData?: {
+        columns: string[],
+        rows: string[],
+    },
 };
 
-const Question: FC<FormQuestionProps> = ({ name, required, control, question, inputType, options}) => {
+const Question: FC<FormQuestionProps> = ({ name, required, control, question, inputType, options, matrixData}) => {
     const [hasError, setHasError] = useState(false);
 
     const questionClasses = classNames(
@@ -50,6 +55,8 @@ const Question: FC<FormQuestionProps> = ({ name, required, control, question, in
             {inputType === 'radio' && <RadioInput control={control} name={name} options={options} required={required} hasOtherAnswer/>}
 
             {inputType === 'checkbox' && <CheckboxInput control={control} name={name} options={options} hasOtherAnswer required={required} />}
+
+            {inputType === 'radioMatrix' && <RadioMatrix name={name} control={control} matrixData={matrixData}/>}
 
             {hasError &&  <p className="text-red-500 mt-3">The answer to this question is required</p>}
         </div>
