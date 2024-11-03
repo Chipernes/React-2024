@@ -61,7 +61,7 @@ const Question: FC<FormQuestionProps> = ({ errors, name, required, control, ques
 
             {inputType === 'checkbox' && <CheckboxInput control={control} name={name} options={options} hasOtherAnswer required={required} />}
 
-            {inputType === 'radioMatrix' && <RadioMatrix name={name} control={control} matrixData={matrixData}/>}
+            {inputType === 'radioMatrix' && <RadioMatrix name={name} control={control} matrixData={matrixData} required={required}/>}
 
             {(hasError || errors) && <p className="text-red-500 mt-3">The answer to this question is required</p>}
         </div>

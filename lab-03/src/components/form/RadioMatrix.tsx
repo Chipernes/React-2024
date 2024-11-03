@@ -8,9 +8,10 @@ type RadioMatrixProps = {
     },
     name: string,
     control: any,
+    required?: boolean
 };
 
-const RadioMatrix: FC<RadioMatrixProps> = ({ control, matrixData, name }) => {
+const RadioMatrix: FC<RadioMatrixProps> = ({ control, matrixData, name, required }) => {
     const { columns, rows } = matrixData!;
 
     return (
@@ -25,16 +26,18 @@ const RadioMatrix: FC<RadioMatrixProps> = ({ control, matrixData, name }) => {
             </thead>
             <tbody>
             {rows.map((row) => (
-                <tr key={row} className="bg-amber-950">
+                <tr key={row} className="bg-amber-950 accent-red-500">
                     <td className="bg-gray-50 p-2">{row}</td>
                     {columns.map((column) => (
                         <td key={`${row}-${column}`} className="bg-gray-50 p-2 text-center">
                             <Controller
                                 name={`${name}.${row}`}
                                 control={control}
+                                rules={required ? { required } : undefined}
                                 render={({ field }) => (
                                     <input
                                         type="radio"
+                                        required={required}
                                         value={column}
                                         checked={field.value === column}
                                         onChange={() => field.onChange(column)}

@@ -95,7 +95,7 @@ const Form = () => {
                 name="currentLevel"
                 matrixData={{
                     columns: ["Not relevant", "Trainee", "Junior", "Middle", "Senior", "Expert"],
-                    rows: ["JS", "TS", "React", "Vue", "Angular", "NodeJS", "GraphQL", "Wordpress, Drupal", "Python", "REST", "Other", "React Native", "Flutter"],
+                    rows: ["JS", "TS", "React", "Vue", "Angular", "NodeJS", "GraphQL", "Wordpress", "Drupal", "Python", "REST", "Other", "React Native", "Flutter"],
                 }}
                 errors={errors.currentLevel}
             />
@@ -181,7 +181,7 @@ const Form = () => {
             />
 
             <div className="flex justify-between items-center mt-5">
-                <button type="submit" className="bg-orange-600 text-white px-8 py-2 rounded">Submit</button>
+                <button type="submit" className="bg-orange-600 text-white px-8 py-2 rounded font-medium">Submit</button>
                 <div className="flex items-center gap-4">
                     <div className="w-44 h-2 bg-green-600 rounded"/>
                     <p>Page 1 of 1</p>
