@@ -1,0 +1,59 @@
+[
+  {
+    "id": 1,
+    "name": "Product 1",
+    "description": "This is a high-quality product.",
+    "characteristics": {
+      "weight": "1.2kg",
+      "dimensions": "10x15x20cm",
+      "material": "Plastic",
+      "color": "Red"
+    },
+    "comments": [
+      { "user": "Olena", "text": "Great product, highly recommend!" },
+      { "user": "Bohdan", "text": "Not bad, but could be better." }
+    ],
+    "questions": [
+      { "question": "Is it waterproof?", "answer": "Yes, it is fully waterproof." },
+      { "question": "Does it come with a warranty?", "answer": "Yes, it comes with a 2-year warranty." }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Product 2",
+    "description": "This is an eco-friendly product.",
+    "characteristics": {
+      "weight": "0.8kg",
+      "dimensions": "8x12x18cm",
+      "material": "Recycled Wood",
+      "color": "Brown"
+    },
+    "comments": [
+      { "user": "Ivan", "text": "Loved it! Perfect for my needs." },
+      { "user": "Dmytro", "text": "Affordable and eco-friendly." }
+    ],
+    "questions": [
+      { "question": "Is it durable?", "answer": "Yes, it is very durable." },
+      { "question": "Can I use it outdoors?", "answer": "Yes, it's suitable for outdoor use." }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Product 3",
+    "description": "A premium product for professionals.",
+    "characteristics": {
+      "weight": "1.5kg",
+      "dimensions": "12x18x25cm",
+      "material": "Aluminum",
+      "color": "Silver"
+    },
+    "comments": [
+      { "user": "Yulia", "text": "Fantastic quality and performance." },
+      { "user": "Taras", "text": "Pricey, but worth every penny." }
+    ],
+    "questions": [
+      { "question": "Is it compatible with other devices?", "answer": "Yes, it works with all major brands." },
+      { "question": "Does it require special maintenance?", "answer": "No special maintenance required." }
+    ]
+  }
+]
