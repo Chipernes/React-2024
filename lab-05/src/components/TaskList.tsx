@@ -5,9 +5,13 @@ import { TaskItem } from './TaskItem';
 export function TaskList() {
   const snap = useSnapshot(state);
 
+  const tasksToShow = snap.filterImportant
+    ? snap.tasks.filter((task) => task.important)
+    : snap.tasks;
+
   return (
     <ul className="list-none p-0 w-full">
-      { snap.tasks.map((task) => (
+      { tasksToShow.map((task) => (
         <TaskItem key={ task.id } task={ task } />
       )) }
     </ul>
