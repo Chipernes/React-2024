@@ -9,6 +9,10 @@ export function TaskList() {
     ? snap.tasks.filter((task) => task.important)
     : snap.tasks;
 
+  if (tasksToShow.length === 0) {
+    return <p className="text-center text-gray-500">No tasks available.</p>;
+  }
+
   return (
     <ul className="list-none p-0 w-full">
       { tasksToShow.map((task) => (

@@ -22,7 +22,7 @@ export function TaskInput() {
         placeholder="Enter a task"
         className="p-2 border rounded w-72 mb-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
       />
-      <label className="flex items-center mb-2">
+      <label className="flex items-center mb-2 bg-gray-100 py-1 px-3 rounded">
         <input
           type="checkbox"
           checked={ isImportant }
